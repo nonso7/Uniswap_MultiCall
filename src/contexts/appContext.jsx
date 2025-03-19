@@ -96,6 +96,7 @@ export const AppProvider = ({ children }) => {
       // const decimals = contractInterface.decodeFunctionResult("decimals", resultsArray[5]);
 
       const tokenDetailsCalls = [
+        //token 0
         {
           target: token0,
           callData: erc20Interface.encodeFunctionData("name"),
@@ -108,6 +109,7 @@ export const AppProvider = ({ children }) => {
           target: token0,
           callData: erc20Interface.encodeFunctionData("decimals"),
         },
+        //token 1
         {
           target: token1,
           callData: erc20Interface.encodeFunctionData("name"),
@@ -127,7 +129,7 @@ export const AppProvider = ({ children }) => {
       );
       const tokenDetailsResultsArray = tokenDetailsResults[1];
 
-      // Parse token0 details
+      // token0 details
       const token0Name = erc20Interface.decodeFunctionResult(
         "name",
         tokenDetailsResultsArray[0]
@@ -141,7 +143,7 @@ export const AppProvider = ({ children }) => {
         tokenDetailsResultsArray[2]
       )[0];
 
-      // Parse token1 details
+      // Token 1 details
       const token1Name = erc20Interface.decodeFunctionResult(
         "name",
         tokenDetailsResultsArray[3]
@@ -157,7 +159,7 @@ export const AppProvider = ({ children }) => {
 
       const reserve0 = Number(getReserves[0]) / (10 ** Number(token0Decimals));
       const reserve1 = Number(getReserves[1]) / (10 ** Number(token1Decimals));
-      const totalSupplyFormatted = Number(totalSupply) / (10 ** 18); // LP tokens are 18 decimals
+      const totalSupplyFormatted = Number(totalSupply) / (10 ** 18); 
 
       const data = {
         pairAddress,
